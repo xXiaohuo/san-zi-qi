@@ -9,7 +9,7 @@ void  reserve(char arr[], int size){
 		int tep = arr[left];
 		arr[left] = arr[right];
 		arr[right] = tep;
-		++left;
+		
 		--right;
 	}
 
