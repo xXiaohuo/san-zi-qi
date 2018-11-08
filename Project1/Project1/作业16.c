@@ -1,4 +1,39 @@
+/*
+#include<stdio.h>
 
+char *my_memmove(char *dst, char *src, size_t count){
+char *ret = dst;
+
+if (dst < src || dst >= src + count){
+while (count--){
+*dst = *src;
+dst++;
+src++;
+}
+}
+else if (dst<src + count&&dst>src)
+{
+dst = dst + count - 1;
+src = src + count - 1;
+while (count--){
+*dst= *src;
+src--;
+dst--;
+}
+}
+return ret;
+}
+int main(){
+char str[] = "menmove can be very useful ......";
+char *ret=my_memmove(str+5, str, 11);
+printf("%s", ret);
+system("pause");
+return 0;
+
+}
+
+
+*/
 
 /*
 #include <stdio.h>
