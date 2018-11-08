@@ -1,3 +1,175 @@
+
+
+/*
+#include <stdio.h>
+#include <stdlib.h>
+char *my_memcpy(char  *dst, const char  *src, size_t count)
+{
+char *ret = dst;
+while (count--){
+*dst =*src;
+dst = dst + 1;
+src = src + 1;
+}
+return ret;
+}
+int main(){
+char *src = "adjsjsfkaka";
+char dst[23] = "";
+my_memcpy(dst, src, 3);
+printf("%s", my_memcpy(dst, src, 3));
+system("pause");
+}
+*/
+/*
+#include <stdio.h>
+#include <stdlib.h>
+char *my_memcpy(char *dst, char *src, int num){
+	int i = 0;
+	while (num--)  {
+		dst[i] = *src;
+		src++;
+		i++;
+	}
+	return dst;
+}
+int main(){
+	char src[] = "asddsaABCDrtr";
+	char dst[23] = "";
+	char *ret = my_memcpy(dst, src, 3);
+	printf("%s", ret);
+	system("pause");
+}
+*/
+/*
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+int my_strchr(char *src, char *dst){
+char *cp = src;
+char *s1 = dst;
+assert(*src != NULL);
+assert(*dst != NULL);
+while (*cp) {
+while (*s1 == *cp){
+
+return cp;
+
+}
+cp++;
+}
+}
+int main(){
+char *str1 = "asddsaABCDrtr";
+char *str2 = "A";
+char *ret = my_strchr(str1, str2);
+printf("%s", ret);
+system("pause");
+}
+
+
+
+*/
+
+
+
+
+/*
+
+//strcmp 
+#include <stdio.h>
+int my_strcmp(const char *src, const char *dst){
+int ret = 0;
+while (!(ret = *(unsigned char *)src - *(unsigned char *)dst) && *dst){
+++src;
+++dst;
+}
+if (ret < 0){
+ret = -1;
+}
+else if (ret>0){
+
+ret = 1;
+}
+return (ret);
+
+}
+int main(){
+char *src = "adsadd";
+char *dst = "adfaffa";
+
+printf("%d",my_strcmp(src, dst));
+system("pause");
+return 0;
+}
+
+
+
+
+*/
+
+
+/*
+//strcmp
+#include <stdio.h>
+int main(){
+const char *str1 = "abcdef";
+const char*str2 = "bbb";
+if (strlen(str1) - strlen(str2) > 0){
+
+printf("str1>str2");
+
+}
+else
+{
+printf("str2>str1");
+}
+system("pause");
+
+return 0;
+}
+*/
+
+//strstr
+/*
+#include <stdio.h>
+#include <stdlib.h>
+char * strstr(char *str1, char *str2){
+int size1 = strlen(str1);
+int size2 = strlen(str2);
+int count = 0;
+int i = 0;
+for ( i = 0; i < size1; i++){
+for (int j = 0; j < size2; j++){
+if (str1[i + j] == str2[j]){
+count++;
+continue;
+}
+else{
+if (count == size2){
+for (j = i-1; j < size1; j++){
+printf("%c", str1[j]);
+}
+}
+count = 0;
+break;
+}
+}
+}
+}
+
+int main(void)
+{
+char str1[]= "Borland International";
+char str2[] = "nation";
+strstr(str1, str2);
+system("pause");
+return 0;
+}
+*/
+
+
+
 /*
 
 #include <stdio.h>
