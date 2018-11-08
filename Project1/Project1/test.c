@@ -1,6 +1,162 @@
 #include<stdio.h>
+#include <string.h>
+#include<errno.h>
+#pragma warning (disable:4996)
+int main()
+{
+	char str1[20];
+	char str2[20];
+	strcpy(str1, "to be");
+	strcpy(str2, " or not to be");
+	strncat(str1, str2, 7);
+	puts(str1);
+	system("pause");
+	return 0;
+}
+
+/*
+
+int main(){
+	char str[][5] = { "dga", "fgf", "dge" };
+	int n;
+	puts("ssssssssssssssssssss...........");
+	for (n = 0; n < 3; n++){
+		if (strncmp(str[n], "dgxx", 2) == 0){
+			printf("found %s \n", str[n]);
+
+		}
+	}
+	system("pause");
+	return 0;
+}
+*/
+
+/*
+int main(){
+
+	char str[] = "sajf jasf  000     jasfjsanfj";
+	char *pch;
+	pch = strstr(str, "000");
+	puts(pch);
+	strncpy(pch, "sample",6); 
+		puts(pch);
+	puts(str);
+	system("pause");
+	return 0;
+
+
+}*/
+/*
+int main(){
+	char str[] = "-this, a sample string.";
+	char *pch;
+	printf("splitting string \"%s\"into tokens;\n", str);
+	pch = strtok(str, " ,");
+	while (pch != NULL){
+		printf("%s\n", pch);
+		pch = strtok(NULL, " ,");
+
+	}
+	system("pause");
+	return 0;
+
+}
+
+|*/
+/*
+int main(){
+	FILE*pFile;
+	pFile = fopen("unexist.ent", "r");
+	if (pFile == NULL){
+		printf("error opening file unexist.ent:%s \n", strerror(errno));
+		system("pause");
+		return 0;
+
+	}
+}|*/
+
+
+
+/*
+int main(){
+	int i = 0;
+	char str[] = "Test String.\n";
+	char c;
+	while (str[i]){
+		c = str[i];
+		if (isupper(c)){
+			c = tolower(c);
+	}
+			putchar(c);
+			i++;
+		
+	}
+	system("pause");
+	return 0;
+}*/
+
+/*
+int my_strlen3(const char*str)
+{
+
+	char *p = str;
+	while (*p != '\0'){
+
+		p++;
+		str++;
+	}
+	return p - str;
+}
+int my_strlen2(const char*str){
+	if (*str == '\0'){
+		return 0;
+	}
+	else{
+		return 1+ my_strlen2(str+1 );
+	}
+}
+
+int my_strlen(const char *str){
+	int count = 0;
+	while (*str){
+		count++;
+		str++;
+
+	}
+	return count;
+
+}
+
+int main(){
+	char *str = "fshafsha";
+	int p1=my_strlen(str);
+	int p2 = my_strlen2(str);
+	int p3 = my_strlen2(str);
+	printf("%d %d %d", p1, p2, p3);
+	system("pause");
+}*/
+/*
+int main(){
+	char buffer1[] = "dakdsakd";
+	char buffer2[] = "dasdksfjk";
+	int n;
+	n = memcmp(buffer1, buffer2, sizeof(buffer1));
+	if (n > 0){
+		printf("1da");
+	}
+	else if (n < 0){
+		printf("2da");
+	}
+	else{
+		printf("yiyangda");
+	}
+	system("pause");
+	return 0;
+}
+*/
+/*
 char *my_memmove(char *dst, char *src, size_t count){
-	char *ret = src;
+	char *ret = dst;
 
 	if (dst < src || dst >= src + count){
 		while (count--){
@@ -29,7 +185,7 @@ int main(){
 	return 0;
 
 }
-
+*/
 
 
 /*
