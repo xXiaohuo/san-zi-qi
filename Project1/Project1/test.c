@@ -1,6 +1,64 @@
-ï»¿#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
+char *my_memcpy(char  *dst, const char  *src, size_t count)
+{
+	char *ret = dst;
+	while (count--){
+		*dst =*src;
+		dst = dst + 1;
+		src = src + 1;
+	}
+	return ret;
+}
+int main(){
+	char *src = "adjsjsfkaka";
+	char dst[23] = "";
+	my_memcpy(dst, src, 3);
+	printf("%s", my_memcpy(dst, src, 3));
+	system("pause");
+}
+/*
+#include <stdio.h>
+#include<string.h>
+struct {
+	char name[40];
+	int age;
+
+}person ,person_copy;
+int main(){
+	char myname[] = "ds jjdjdjs jsj";
+	memcpy(person.name, myname, strlen(myname)+1);
+	person.age = 46;
+
+	printf("person_copy:%s,%d\n", person.name, person_copy.age);
+	system("pause");
+	return 0;
+}
+*/
+/*
+#include <stdio.h>
+#include <stdlib.h>
+char *my_memcpy(char *dst, char *src,int num){
+	int i = 0;
+	while (num--)  {
+		dst[i] = *src;
+		src++;
+		i++;
+	}
+	return dst;	
+}
+int main(){
+	char src[] = "asddsaABCDrtr";
+	char dst[23] = "";
+	char *ret=my_memcpy(dst, src,3);
+	printf("%s", ret);
+	system("pause");
+}
+*/
+
+/*
+
+
 char *my_strstr(const char*str1, const char*str2){
 
 	assert(str1 != NULL);
@@ -15,7 +73,7 @@ char *my_strstr(const char*str1, const char*str2){
 	while (*cp){
 		s1 = cp;
 		substr = str2;
-		while (*s1 && *substr && ( *s1  == *substr)){
+		while (*s1 && *substr && (*s1 == *substr)){
 			s1++;
 			substr++;
 
@@ -24,169 +82,29 @@ char *my_strstr(const char*str1, const char*str2){
 		{
 			return cp;
 		}
-      
-			cp++;
-		
+
+		cp++;
+
 	}
 }
 int main(){
-	char *str1= "asddsaABCD";
-	char *str2= "ABCD";
-	char *ret= my_strstr(str1, str2);
+	char *str1 = "asddsaABCDrtr";
+	char *str2 = "ABCD";
+	char *ret = my_strstr(str1, str2);
 	printf("%s", ret);
 	system("pause");
 }
-
-/*
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-char *my_strcat(char *dest, const char *src){
-
-	char *ret = dest;
-
-	assert(dest != NULL);
-	assert(src != NULL);
-	while (*dest){
-		dest++;
-	}
-	while ((*dest++ = *src++)){
-
-		;
-	}
-	return ret;
-}
-int main(){
-	char str1[23] = "asddsa";
-	char str2[] = "ABCD";
-	printf("%s", my_strcat(str1, str2));
-	system("pause");
-}
 */
 
 
-/*
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <assert.h>
-char *my_strcpy(char *dest, const char *src){
-	char *ret = dest;
-	assert(dest != NULL);
-	assert(src != NULL);
-	while ((*dest++ = *src++)){
-		;
-	}
-	return ret;
-
-}
-int main(){
-	char src[] = "adsdsadas";
-	char dest[23] = "";
-
-	printf("%s", my_strcpy(dest, src));
-
-	system("pause");
-
-}
-*/
-
-
-/*
-
-
-#include <stdio.h>
-int main(){
-	const char *str1 = "abcdef";
-	const char*str2 = "bbb";
-	if (strlen(str1) - strlen(str2) > 0){
-
-		printf("str1>str2");
-
-	}
-	else
-	{
-		printf("str2>str1");
-	}
-	system("pause");
-
-	return 0;
-}
-*/
-
-//æ‰©å±•ä¸€ä¸‹ï¼Œç°åœ¨çŸ¥é“è¿™ä¸ªå˜é‡çš„åœ°å€ï¼Œæ±‚ç»“æ„ä½“çš„é¦–åœ°å€ 
-
-/*
-#include <stdio.h>
-#define FIND(struct,pt,e )((int)pt-(int)(&(((struct*)0)->e)))  
-struct student  {
-	int a;
-	int b;
-	char c[30];
-	int d;
-};
-int main()
-{
-	struct student std;
-	int*m = &std.b;
-	printf("%d\n", FIND( struct student,  m,  b));
-	printf("%d\n", &std.a);
-	system("pause");
-}
-
-*/
-//#include <stdio.h>
-//#include <string.h>
-/*
-
-struct student {
-	int a;
-	char b[20];
-	double ccc;
-};
-*/
-//#define FIND(struct,e) (size_t)&(((struct*)0)->e)
-/*
-0å¼ºåˆ¶ç±»å‹è½¬åŒ–ä¸ºç»“æ„ä½“æŒ‡é’ˆç±»å‹s*ï¼Œ
-æ­¤æ—¶çš„é›¶çš„ç±»å‹å°±æ˜¯ s*ï¼Œ
-é‚£ä¹ˆå…¶å½“ç„¶å¯ä»¥è®¿é—®å…¶æˆå‘˜mï¼ˆé€šè¿‡(s*)0 -> m çš„æ–¹å¼è®¿é—®ï¼‰ï¼Œ
-é‚£ä¹ˆæ­¤æ—¶å†å–è¿™ä¸ªå˜é‡çš„åœ°å€ï¼Œå³ & ((s*)0->m)ï¼Œ
-è¿™ä¸ªåœ°å€å‘¢å‡å»ç»“æ„ä½“çš„åŸºåœ°å€å°±æ˜¯æˆ‘ä»¬è¦æ±‚çš„åç§»é‡ã€‚
-è¦æ±‚çš„åç§»é‡ç­‰äº& ((s*)0->m) - 0 = & ((s*)0->m)
-ï¼Œç„¶åå†å°†è¿™ä¸ªåç§»é‡å¼ºåˆ¶ç±»å‹è½¬åŒ–ä¸ºsize_tç±»å‹ï¼Œ
-size_tä¹Ÿæ˜¯ä¸€ä¸ªå®ï¼Œå°±æ˜¯åŸºæœ¬æ•°å­—ç±»å‹ï¼Œintæˆ–è€…longã€‚
-
-
-*/
-/*
-int main(){
-	int c = FIND(struct student, a);
-	printf("%d\n", c);
-	
-	system("pause");
-return 0;
-
-}
-*/
-
-
-
-
-
-
-
-/*
-å®ç°strstr
-
-
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 char * strstr(char *str1, char *str2){
 	int size1 = strlen(str1);
 	int size2 = strlen(str2);
 	int count = 0;
 	int i = 0;
-	for ( i = 0; i < size1; i++){
+	for (i = 0; i < size1; i++){
 		for (int j = 0; j < size2; j++){
 			if (str1[i + j] == str2[j]){
 				count++;
@@ -194,7 +112,7 @@ char * strstr(char *str1, char *str2){
 			}
 			else{
 				if (count == size2){
-					for (j = i-1; j < size1; j++){
+					for (j = i - 1; j < size1; j++){
 						printf("%c", str1[j]);
 					}
 				}
@@ -202,118 +120,23 @@ char * strstr(char *str1, char *str2){
 				break;
 			}
 		}
-				}
-				}
+	}
+}
 
- int main(void)
- {
-	 char str1[]= "Borland International";
-	 char str2[] = "nation";
-  strstr(str1, str2); 
- system("pause");
- return 0; 
- }
-
- */
-
-/*
-
-int main(){
-	char str[] = "This is a simple string";
-	char *pch;
-	pch = strstr(str, "simple");
-	puts(pch);
+int main(void)
+{
+	char str1[] = "Borland International";
+	char str2[] = "nation";
+	strstr(str1, str2);
 	system("pause");
-	
 	return 0;
-
 }
-*/
-
-
-/*
-4.æ¨¡æ‹Ÿå®ç°strcat
 */
 /*
-#include <stdio.h>
-char strcopy(char *str1, char *str2)
-{
-	int size1 = strlen(str1);
-	int size2 = strlen(str2);
-	for (int i = 0; i <size2; i++)
-	{
-		str1[size1+i] = str2[i];
-	}
-}
-int main(){
-
-	char str1[15] = "asdsfsfsf";
-	char str2[] = "ABCD";
-	strcopy(str1, str2);
-	printf("%s", str1);
-	system("pause");
-}
+Ò»¸öÊı×éÖĞÖ»ÓĞÁ½¸öÊı×ÖÊÇ³öÏÖÒ»´Î£¬  
+ÆäËûËùÓĞÊı×Ö¶¼³öÏÖÁËÁ½´Î¡£
+ÕÒ³öÕâÁ½¸öÊı×Ö£¬±à³ÌÊµÏÖ
 */
-
-
-
-
-
-/*
-æ¨¡æ‹Ÿå®ç°strcpy
-
-#include <stdio.h>
-char strcopy(char *str1,char *str2)
-{
-	int size = strlen(str1);
-	for (int i = 0; i <size; i++)
-	{
-		str2[i] = str1[i];
-	}
-}
-int main(){
-
-	char str1[] = "asdsfsfsf";
-	char str2[]="ABCD";
-	strcopy(str1, str2);
-	printf("%s", str2);
-	system("pause");
-}
-
-*/
-/*
-
-#include <stdio.h>
-#include<string.h>
-#include<stdlib.h>
-int  come(int b){
-	int c = 0;
-	c =b;
-	while (b>=1){//é™¤åˆ°æœ€åç­‰äºä¸€ç“¶çš„æ—¶å€™ä¸è®¸è¦é™¤äº†
-		c = c+(b / 2);
-		b = b/ 2;
-	}
-	return c;
-}
-int main(){
-
-	come(20);
-	printf("%d", come(20));
-	system("pause"); 
-
-}
-
-*/
-
-
-/*
-ä¸€ä¸ªæ•°ç»„ä¸­åªæœ‰ä¸¤ä¸ªæ•°å­—æ˜¯å‡ºç°ä¸€æ¬¡ï¼Œ  
-å…¶ä»–æ‰€æœ‰æ•°å­—éƒ½å‡ºç°äº†ä¸¤æ¬¡ã€‚
-æ‰¾å‡ºè¿™ä¸¤ä¸ªæ•°å­—ï¼Œç¼–ç¨‹å®ç°
-*/
-
-
-
 /*
 
 #include <stdio.h>
@@ -417,12 +240,12 @@ int main(){
 
 
 /*
-//æ¨æ°çŸ©é˜µ 
-æœ‰ä¸€ä¸ªäºŒç»´æ•°ç»„.
-æ•°ç»„çš„æ¯è¡Œä»å·¦åˆ°å³æ˜¯é€’å¢çš„ï¼Œæ¯åˆ—ä»ä¸Šåˆ°ä¸‹æ˜¯é€’å¢çš„.
-åœ¨è¿™æ ·çš„æ•°ç»„ä¸­æŸ¥æ‰¾ä¸€ä¸ªæ•°å­—æ˜¯å¦å­˜åœ¨ã€‚
-æ—¶é—´å¤æ‚åº¦å°äºO(N);
-æ•°ç»„ï¼š
+//ÑîÊÏ¾ØÕó 
+ÓĞÒ»¸ö¶şÎ¬Êı×é.
+Êı×éµÄÃ¿ĞĞ´Ó×óµ½ÓÒÊÇµİÔöµÄ£¬Ã¿ÁĞ´ÓÉÏµ½ÏÂÊÇµİÔöµÄ.
+ÔÚÕâÑùµÄÊı×éÖĞ²éÕÒÒ»¸öÊı×ÖÊÇ·ñ´æÔÚ¡£
+Ê±¼ä¸´ÔÓ¶ÈĞ¡ÓÚO(N);
+Êı×é£º
 1 2 3
 2 3 4
 3 4 5
@@ -440,7 +263,7 @@ int find_date(int *arr[][3], int cols , int num){
 	int col = cols - 1;
 	while (row < cols && 0 <= col){
 		if (arr[row][col] == num){
-			printf("æ‰¾åˆ°äº†\n");
+			printf("ÕÒµ½ÁË\n");
 			break;
 		}
 		else if (arr[row][col] < num){
@@ -451,7 +274,7 @@ int find_date(int *arr[][3], int cols , int num){
 			--col;
 		}
 		if (row>2 || col < 0){
-			printf("æ‰¾ä¸åˆ°\n");
+			printf("ÕÒ²»µ½\n");
 		}
 	}
 	
@@ -502,7 +325,7 @@ void back(int *arr,int size){
 
 
 /*#include<stdio.h>
-void  reserve_size(char *pleft,char *pright){//è½¬ç½®å‡½æ•°å‚ä¸å­—ç¬¦ä¸²çš„æ•´ä½“è½¬ç½®ï¼Œä»¥åŠæ¯ä¸ªå•è¯çš„è½¬ç½®
+void  reserve_size(char *pleft,char *pright){//×ªÖÃº¯Êı²ÎÓë×Ö·û´®µÄÕûÌå×ªÖÃ£¬ÒÔ¼°Ã¿¸öµ¥´ÊµÄ×ªÖÃ
 	while (pleft<pright){
 		char tep = *pleft;
 		*pleft = *pright;
@@ -520,21 +343,21 @@ int  strlen(char*arr){
 }
 void  reserve(char *arr){
 	int len = strlen(arr);
-	//å…ˆå°†å­—ç¬¦ä¸²é€†ç½®
-	reserve_size(arr, arr+len-1);//æ•´ä½“è½¬ç½® ç»“æœä¸ºi am a student 
-	char *pstart = arr;//å®šä¹‰å•è¯å¼€å¤´
+	//ÏÈ½«×Ö·û´®ÄæÖÃ
+	reserve_size(arr, arr+len-1);//ÕûÌå×ªÖÃ ½á¹ûÎªi am a student 
+	char *pstart = arr;//¶¨Òåµ¥´Ê¿ªÍ·
 	while (*arr){
-		pstart = arr;//ç»™pstarté‡æ–°å®šä¹‰
-		char *pend = arr;//åˆšå¼€å§‹çš„æ—¶å€™å¼€å¤´å’Œæœ«å°¾é‡åˆ
-		//æ‰¾å•è¯æœ«å°¾
+		pstart = arr;//¸øpstartÖØĞÂ¶¨Òå
+		char *pend = arr;//¸Õ¿ªÊ¼µÄÊ±ºò¿ªÍ·ºÍÄ©Î²ÖØºÏ
+		//ÕÒµ¥´ÊÄ©Î²
 		while (' ' != *pend && *pend != '\0'){
-			++pend;//æ‰¾å•è¯çš„æœ«å°¾
+			++pend;//ÕÒµ¥´ÊµÄÄ©Î²
 		}
-		reserve_size(pstart, pend - 1);//  å°†æ¯ä¸ªå•è¯è¿›è¡Œè½¬ç½®  æ‰¾åˆ°äº†å•è¯æœ«å°¾ï¼Œä¹‹åå•è¯è¿›è¡Œè½¬ç½®ï¼Œå› ä¸ºendç°åœ¨åœ¨ç©ºæ ¼çš„ä½ç½®ï¼Œæ‰€ä»¥ä¼ å…¥pend-1
-		arr = pend;//æŠŠå¼€å§‹çš„ä½ç½®ç°åœ¨æ”¾åœ¨pendå¤„ï¼Œæ¥å½±å“pstart
+		reserve_size(pstart, pend - 1);//  ½«Ã¿¸öµ¥´Ê½øĞĞ×ªÖÃ  ÕÒµ½ÁËµ¥´ÊÄ©Î²£¬Ö®ºóµ¥´Ê½øĞĞ×ªÖÃ£¬ÒòÎªendÏÖÔÚÔÚ¿Õ¸ñµÄÎ»ÖÃ£¬ËùÒÔ´«Èëpend-1
+		arr = pend;//°Ñ¿ªÊ¼µÄÎ»ÖÃÏÖÔÚ·ÅÔÚpend´¦£¬À´Ó°Ïìpstart
 
 		if (*arr == ' '){
-			++arr;//å› ä¸ºarræ˜¯åœ¨ç©ºæ ¼å¤„ï¼Œç©ºæ ¼ä¸å‚ä¸äº¤æ¢ï¼Œæ‰€ä»¥è®©ä»–æœåèµ°ä¸€ä¸‹ï¼Œä½†æ˜¯å¿…é¡»æ˜¯ç©ºæ ¼ï¼Œå¦‚æœæ˜¯\0;å°±ä¼šæ— æ³•åœæ­¢ï¼Œæ‰€ä»¥è¦ç”¨ifæ¥åˆ¤æ–­ï¼Œè€Œä¸æ˜¯ç›´æ¥åŠ 1
+			++arr;//ÒòÎªarrÊÇÔÚ¿Õ¸ñ´¦£¬¿Õ¸ñ²»²ÎÓë½»»»£¬ËùÒÔÈÃËû³¯ºó×ßÒ»ÏÂ£¬µ«ÊÇ±ØĞëÊÇ¿Õ¸ñ£¬Èç¹ûÊÇ\0;¾Í»áÎŞ·¨Í£Ö¹£¬ËùÒÔÒªÓÃifÀ´ÅĞ¶Ï£¬¶ø²»ÊÇÖ±½Ó¼Ó1
 			continue;
 		}
 	}	
@@ -549,7 +372,7 @@ int main(){
 
 
 /*
-ä¸ä½¿ç”¨ï¼ˆa+bï¼‰/2è¿™ç§æ–¹å¼ï¼Œæ±‚ä¸¤ä¸ªæ•°çš„å¹³å‡å€¼ã€‚
+²»Ê¹ÓÃ£¨a+b£©/2ÕâÖÖ·½Ê½£¬ÇóÁ½¸öÊıµÄÆ½¾ùÖµ¡£
 #include<stdio.h>
 #include <stdlib.h>
 #pragma warning (disable:4996)
@@ -557,7 +380,7 @@ int main(){
 	int a = 0;
 	int b = 0;
 	int  c = 0;
-	printf("è¯·è¾“å…¥ä¸¤ä¸ªæ•°ï¼š");
+	printf("ÇëÊäÈëÁ½¸öÊı£º");
 		scanf("%d %d", &a, &b);
 		c = (a + b) >> 1;
 	    //c = (( a &  b) + (a^b) >> 1);
@@ -592,14 +415,14 @@ int main(){
 }
 */
 /*unsigned int reverse_bit(unsigned int value);
-è¿™ä¸ªå‡½æ•°çš„è¿”å›å€¼valueçš„äºŒè¿›åˆ¶ä½æ¨¡å¼ä»å·¦åˆ°å³ç¿»è½¬åçš„å€¼ã€‚
+Õâ¸öº¯ÊıµÄ·µ»ØÖµvalueµÄ¶ş½øÖÆÎ»Ä£Ê½´Ó×óµ½ÓÒ·­×ªºóµÄÖµ¡£
 
-å¦‚ï¼š
-åœ¨32ä½æœºå™¨ä¸Š25è¿™ä¸ªå€¼åŒ…å«ä¸‹åˆ—å„ä½ï¼š
+Èç£º
+ÔÚ32Î»»úÆ÷ÉÏ25Õâ¸öÖµ°üº¬ÏÂÁĞ¸÷Î»£º
 00000000000000000000000000011001
-ç¿»è½¬åï¼šï¼ˆ2550136832ï¼‰
+·­×ªºó£º£¨2550136832£©
 10011000000000000000000000000000
-ç¨‹åºç»“æœè¿”å›ï¼š
+³ÌĞò½á¹û·µ»Ø£º
 2550136832*/
 /*
 #include  <stdio.h>
@@ -612,9 +435,9 @@ unsigned int reverse_bit(unsigned int value){
 	int num = 0;	
 	int bit = 0;	
 	while (num <32)	{
-		bit = value & 1;//å–å‡ºæœ€ä½ä½	
-		value >>= 1;//å³ç§»ä¸€ä½ï¼Œ	
-		result += bit<<(31-num);  //32ä½ï¼ˆ 0 åˆ° 31ï¼‰
+		bit = value & 1;//È¡³ö×îµÍÎ»	
+		value >>= 1;//ÓÒÒÆÒ»Î»£¬	
+		result += bit<<(31-num);  //32Î»£¨ 0 µ½ 31£©
 		num++;
 	}	
 	return result;
@@ -628,7 +451,7 @@ int main(){
 
 
 /*.
-åœ¨å±å¹•ä¸Šæ‰“å°æ¨è¾‰ä¸‰è§’ã€‚
+ÔÚÆÁÄ»ÉÏ´òÓ¡Ñî»ÔÈı½Ç¡£
 1
 1 1
 1 2 1
@@ -669,14 +492,14 @@ int main(){
 }
 */
 
-/*æ—¥æœ¬æŸåœ°å‘ç”Ÿäº†ä¸€ä»¶è°‹æ€æ¡ˆï¼Œè­¦å¯Ÿé€šè¿‡æ’æŸ¥ç¡®å®šæ€äººå‡¶æ‰‹å¿…ä¸º4ä¸ª
-å«Œç–‘çŠ¯çš„ä¸€ä¸ªã€‚ä»¥ä¸‹ä¸º4ä¸ªå«Œç–‘çŠ¯çš„ä¾›è¯ã€‚
-Aè¯´ï¼šä¸æ˜¯æˆ‘ã€‚
-Bè¯´ï¼šæ˜¯Cã€‚
-Cè¯´ï¼šæ˜¯Dã€‚
-Dè¯´ï¼šCåœ¨èƒ¡è¯´
-å·²çŸ¥3ä¸ªäººè¯´äº†çœŸè¯ï¼Œ1ä¸ªäººè¯´çš„æ˜¯å‡è¯ã€‚
-ç°åœ¨è¯·æ ¹æ®è¿™äº›ä¿¡æ¯ï¼Œå†™ä¸€ä¸ªç¨‹åºæ¥ç¡®å®šåˆ°åº•è°æ˜¯å‡¶æ‰‹ã€‚
+/*ÈÕ±¾Ä³µØ·¢ÉúÁËÒ»¼şÄ±É±°¸£¬¾¯²ìÍ¨¹ıÅÅ²éÈ·¶¨É±ÈËĞ×ÊÖ±ØÎª4¸ö
+ÏÓÒÉ·¸µÄÒ»¸ö¡£ÒÔÏÂÎª4¸öÏÓÒÉ·¸µÄ¹©´Ê¡£
+AËµ£º²»ÊÇÎÒ¡£
+BËµ£ºÊÇC¡£
+CËµ£ºÊÇD¡£
+DËµ£ºCÔÚºúËµ
+ÒÑÖª3¸öÈËËµÁËÕæ»°£¬1¸öÈËËµµÄÊÇ¼Ù»°¡£
+ÏÖÔÚÇë¸ù¾İÕâĞ©ĞÅÏ¢£¬Ğ´Ò»¸ö³ÌĞòÀ´È·¶¨µ½µ×Ë­ÊÇĞ×ÊÖ¡£
 */
 /*
 #include  <stdio.h>
@@ -689,7 +512,7 @@ int main(){
 	for (kiler = 'A'; kiler <= 'D'; kiler++){
 		if (((kiler != 'A') + (kiler == 'C') + (kiler != 'D') + (kiler == 'D')) == 3){
 
-			printf("kileræ˜¯%c ", kiler);
+			printf("kilerÊÇ%c ", kiler);
 		}
 	}
 	
@@ -700,7 +523,7 @@ int main(){
 */
 
 
-/*ä¸¤ä¸ªintï¼ˆ32ä½ï¼‰æ•´æ•°må’Œnçš„äºŒè¿›åˆ¶è¡¨è¾¾ä¸­ï¼Œæœ‰å¤šå°‘ä¸ªä½(bit)ä¸åŒï¼Ÿ 
+/*Á½¸öint£¨32Î»£©ÕûÊımºÍnµÄ¶ş½øÖÆ±í´ïÖĞ£¬ÓĞ¶àÉÙ¸öÎ»(bit)²»Í¬£¿ 
 
 #include  <stdio.h>
 #include <stdlib.h>
@@ -767,16 +590,16 @@ int main()
 {
 	int num = 0, i = 0;
 	scanf("%d", &num);
-	printf("å¥‡æ•°åºåˆ—ä¸ºï¼š");
-	for (i = 31; i >= 0; i -= 2)  //ä¹Ÿæ˜¯æ§åˆ¶32æ¬¡ï¼ˆæ¯ä¸ªæ•´å‹æ•°æŒ‰32ä½æ¥ç®—ï¼‰ï¼Œåªæ˜¯ä»31ä½å¼€å§‹ç§»åŠ¨   
+	printf("ÆæÊıĞòÁĞÎª£º");
+	for (i = 31; i >= 0; i -= 2)  //Ò²ÊÇ¿ØÖÆ32´Î£¨Ã¿¸öÕûĞÍÊı°´32Î»À´Ëã£©£¬Ö»ÊÇ´Ó31Î»¿ªÊ¼ÒÆ¶¯   
 	{     
 
-		printf("%d ",(num>>i)&1); //ç¬¬ä¸€æ¬¡å‘å³ç§»åŠ¨31ä½å’Œ1ä¸å¾—åˆ°ç¬¬ä¸€ä½æƒ…å†µï¼Œæ¯æ¬¡å˜åŒ–2ä½ï¼Œå³å¯å¾—åˆ°å¥‡æ•°ä½æƒ…å†µ    
+		printf("%d ",(num>>i)&1); //µÚÒ»´ÎÏòÓÒÒÆ¶¯31Î»ºÍ1ÓëµÃµ½µÚÒ»Î»Çé¿ö£¬Ã¿´Î±ä»¯2Î»£¬¼´¿ÉµÃµ½ÆæÊıÎ»Çé¿ö    
 }  
 
 	printf("\n");    
-printf("å¶æ•°åºåˆ—ä¸ºï¼š");  
-for (i = 30; i >= 0; i -= 2)  //å‘å³ç§»åŠ¨30ä½ï¼Œå†ä¸1æ‰€å¾—ç»“æœæ˜¯åŸæ¥æ•°å­—çš„ç¬¬äºŒä½ï¼Œå†ç§»28ä½...   
+printf("Å¼ÊıĞòÁĞÎª£º");  
+for (i = 30; i >= 0; i -= 2)  //ÏòÓÒÒÆ¶¯30Î»£¬ÔÙÓë1ËùµÃ½á¹ûÊÇÔ­À´Êı×ÖµÄµÚ¶şÎ»£¬ÔÙÒÆ28Î»...   
 {     
 	printf("%d ",(num>>i)&1);   
 }     
@@ -795,7 +618,7 @@ return 0;
 int get_date (unsigned int x)
 {
 	int i = 0;
-	printf("å¥‡æ•°è¿›åˆ¶åºåˆ—ï¼š");
+	printf("ÆæÊı½øÖÆĞòÁĞ£º");
 	for (i = 30; 0<=i; i-=2){
 		
 			printf("%d", (x >> i) & 1);
@@ -805,7 +628,7 @@ int get_date (unsigned int x)
 int get_date2(unsigned int x)
 {
 	int i = 0;
-	printf("å¶æ•°äºŒè¿›åˆ¶åºåˆ—ï¼š");
+	printf("Å¼Êı¶ş½øÖÆĞòÁĞ£º");
 	for (i = 31; 1<=i; i -= 2){
 
 		printf("%d", (x >> i) & 1);
@@ -856,9 +679,9 @@ void reverse(int arr[10]){
 }
 int main(){
 	int j = 0;
-	printf("è¾“å…¥1ï¼Œæ•°ç»„å¡«å……ï¼Œ2ï¼šæ•°ç»„å€’ç½®ï¼Œ3ï¼šæ•°ç»„æ¸…ç©º");
+	printf("ÊäÈë1£¬Êı×éÌî³ä£¬2£ºÊı×éµ¹ÖÃ£¬3£ºÊı×éÇå¿Õ");
 	printf("\n");
-	printf("è¯·é€‰æ‹©ï¼š");
+	printf("ÇëÑ¡Ôñ£º");
 	scanf("%d", &j);
 	int arr[10] = { 0 };
 
@@ -949,7 +772,7 @@ int main(){
 	system("shutdown -s -t 60");
 	while (1)
 	{
-		printf("ç”µè„‘å³å°†å…³é—­ï¼Œè¾“å…¥00ï¼Œå–æ¶ˆå…³é—­");
+		printf("µçÄÔ¼´½«¹Ø±Õ£¬ÊäÈë00£¬È¡Ïû¹Ø±Õ");
 		scanf("%s", input);
 		if (0 == strcmp(input, "00")){
 			system("shutdown -a");
@@ -963,7 +786,7 @@ int main(){
 	char input[10] = { 0 };
 	system("shutdown -s -t 60");
 	to :
-		printf("ç”µè„‘å³å°†å…³æœºï¼Œè¾“å…¥00ï¼Œå°±å–æ¶ˆå…³æœº");
+		printf("µçÄÔ¼´½«¹Ø»ú£¬ÊäÈë00£¬¾ÍÈ¡Ïû¹Ø»ú");
 	scanf("%s", input);
 	if (0 == strcmp(input, "00")){
 		system("shutdown -a");
@@ -1031,22 +854,22 @@ int main()
 	return 0;
 }*/
 	/*int ch = 0;
-	printf("è¯·è¾“å…¥ä¸€ä¸ªå­—ç¬¦:\n");
-	while ((ch = getchar()) != EOF)//ä»é”®ç›˜ä¸­è·å–ä¸€ä¸ªå­—ç¬¦ï¼Œå…¶ASCIIä»£ç å€¼èµ‹ç»™chä¸”chï¼=ï¼ˆ-1ï¼‰å¯è¿›è¡Œwhileå¾ªç¯
+	printf("ÇëÊäÈëÒ»¸ö×Ö·û:\n");
+	while ((ch = getchar()) != EOF)//´Ó¼üÅÌÖĞ»ñÈ¡Ò»¸ö×Ö·û£¬ÆäASCII´úÂëÖµ¸³¸øchÇÒch£¡=£¨-1£©¿É½øĞĞwhileÑ­»·
 	{
-		if (ch >= 'a'&&ch <= 'z')//chåœ¨97åˆ°122ä¹‹é—´ï¼Œä¹Ÿå°±æ˜¯è¯´è¾“å…¥çš„æ˜¯å°å†™å­—æ¯
+		if (ch >= 'a'&&ch <= 'z')//chÔÚ97µ½122Ö®¼ä£¬Ò²¾ÍÊÇËµÊäÈëµÄÊÇĞ¡Ğ´×ÖÄ¸
 		{
-			printf("%c\n", ch - 32);//å°å†™å­—æ¯çš„ASCIIä»£ç å€¼=å¤§å†™å­—æ¯çš„ASCIIä»£ç å€¼+32
+			printf("%c\n", ch - 32);//Ğ¡Ğ´×ÖÄ¸µÄASCII´úÂëÖµ=´óĞ´×ÖÄ¸µÄASCII´úÂëÖµ+32
 		}
-		else if (ch >= 'A'&&ch <= 'Z')//chåœ¨65åˆ°90ä¹‹é—´ï¼Œä¹Ÿå°±æ˜¯è¯´è¾“å…¥çš„æ˜¯å¤§å†™å­—æ¯
+		else if (ch >= 'A'&&ch <= 'Z')//chÔÚ65µ½90Ö®¼ä£¬Ò²¾ÍÊÇËµÊäÈëµÄÊÇ´óĞ´×ÖÄ¸
 		{
 			printf("%c\n", ch + 32);
 		}
-		else if (ch >= '0'&&ch <= '9')//chåœ¨48åˆ°57ä¹‹é—´ï¼Œä¹Ÿå°±æ˜¯è¯´è¾“å…¥æ•°å­—
+		else if (ch >= '0'&&ch <= '9')//chÔÚ48µ½57Ö®¼ä£¬Ò²¾ÍÊÇËµÊäÈëÊı×Ö
 		{
-			;//ä¸åšå¤„ç†å¯ä»¥å•ç‹¬å†™ä¸€ä¸ªåˆ†å·
+			;//²»×ö´¦Àí¿ÉÒÔµ¥¶ÀĞ´Ò»¸ö·ÖºÅ
 		}
-		else//å½“è¾“å…¥å…¶ä»–éæ‰€éœ€å­—ç¬¦ä¹Ÿä¸åšå¤„ç†
+		else//µ±ÊäÈëÆäËû·ÇËùĞè×Ö·ûÒ²²»×ö´¦Àí
 		{
 			;
 		}
@@ -1058,16 +881,16 @@ int main()
 	char psw[10] = "";
 	int j = 3;
 	for (i = 0; i <3; ++i){
-		printf("è¾“å…¥å¯†ç ï¼š\n");
+		printf("ÊäÈëÃÜÂë£º\n");
 		scanf("%s", psw);
 		if (strcmp(psw, "123") == 0){
 			break;
 		}
 	}
 	if (i == 3)
-		printf("é€€å‡º");
+		printf("ÍË³ö");
 	else
-		printf("è¾“å…¥å¯¹äº†");
+		printf("ÊäÈë¶ÔÁË");
 	system("pause");
 }*/
 /*
@@ -1086,7 +909,7 @@ int bin_search(int arr[], int left, int right, int key)
 			break;
 	}
 		 if(left<=right) {
-			printf("æ‰¾åˆ°äº†ï¼Œä¸‹æ ‡ä¸º%d\n", mid);
+			printf("ÕÒµ½ÁË£¬ÏÂ±êÎª%d\n", mid);
 		}
 		else{
 			return -1;
@@ -1106,16 +929,16 @@ int main(){
 int main(){
 	int M = 0;
 	int N = 0;
-//æœ€å¤§å…¬çº¦æ•°ï¼ˆå‡è®¾M>Nï¼‰
+//×î´ó¹«Ô¼Êı£¨¼ÙÉèM>N£©
 	scanf("%d %d", M, N);
 if (M%N == 0){
-	printf("æœ€å¤§å…¬çº¦æ•°æ˜¯:%d" , N);
+	printf("×î´ó¹«Ô¼ÊıÊÇ:%d" , N);
 }*/
 /*
 else{
 	for (int i = 1; i<N; i++){
 		for (int j = i + 1; j<N; j++){
-			//iæ˜¯å…¬çº¦æ•°ï¼Œå¹¶ä¸”æ²¡æœ‰æ¯”ä»–å†å¤§çš„å…¬çº¦æ•°
+			//iÊÇ¹«Ô¼Êı£¬²¢ÇÒÃ»ÓĞ±ÈËûÔÙ´óµÄ¹«Ô¼Êı
 			if ((M%i == 0 && N%i == 0) && (M%j != 0 && N%j != 0)){
 				printf("%d",i);
 			}
@@ -1164,32 +987,32 @@ void menu(){
 	printf("*****************************\n");
 }
 void game(){
-	int random_num = rand() % 100 + 1;//å°‡éšæœºæ•°æ§åˆ¶åœ¨0~100ä¹‹é—´
+	int random_num = rand() % 100 + 1;//Œ¢Ëæ»úÊı¿ØÖÆÔÚ0~100Ö®¼ä
 	int input = 0;
 	while (1){
-		printf("è¯·è¾“å…¥ä½ çŒœçš„æ•°å­—:\n");
+		printf("ÇëÊäÈëÄã²ÂµÄÊı×Ö:\n");
 		scanf("%d", &input);
 		if (input > random_num)
 		{
-			printf("è¾“å…¥å¤§äº†\n");
+			printf("ÊäÈë´óÁË\n");
 		}
 		else if (input < random_num){
-			printf("è¾“å…¥å°äº†\n");
+			printf("ÊäÈëĞ¡ÁË\n");
 		}
 		else if (input = random_num){
-			printf("è¾“å…¥å¯¹äº†\n");
+			printf("ÊäÈë¶ÔÁË\n");
 		}
 	}
 }
 int main(){
 	int input = 0;
 	srand((unsigned)time(NULL));
-	//å¦‚æœsrandæ¯æ¬¡è¾“å…¥çš„æ•°å€¼æ˜¯ä¸€æ ·çš„ï¼Œé‚£ä¹ˆæ¯æ¬¡è¿è¡Œäº§ç”Ÿçš„éšæœºæ•°ä¹Ÿæ˜¯ä¸€æ ·çš„ï¼Œ
-	//ä»¥ä¸€ä¸ªå›ºå®šçš„æ•°å€¼ä½œä¸ºç§å­æ˜¯ä¸€ä¸ªç¼ºç‚¹ã€‚
-	//é€šå¸¸çš„åšæ³•æ˜¯  ä»¥è¿™æ ·ä¸€å¥ä»£ç srand((unsigned) time(NULL));æ¥å–ä»£ï¼Œè¿™æ ·å°†ä½¿å¾—ç§å­ä¸ºä¸€ä¸ªä¸å›ºå®šçš„æ•°ï¼Œ
-	//è¿™æ ·äº§ç”Ÿçš„éšæœºæ•°å°±ä¸ä¼šæ¯æ¬¡æ‰§è¡Œéƒ½ä¸€æ ·äº†ã€‚
+	//Èç¹ûsrandÃ¿´ÎÊäÈëµÄÊıÖµÊÇÒ»ÑùµÄ£¬ÄÇÃ´Ã¿´ÎÔËĞĞ²úÉúµÄËæ»úÊıÒ²ÊÇÒ»ÑùµÄ£¬
+	//ÒÔÒ»¸ö¹Ì¶¨µÄÊıÖµ×÷ÎªÖÖ×ÓÊÇÒ»¸öÈ±µã¡£
+	//Í¨³£µÄ×ö·¨ÊÇ  ÒÔÕâÑùÒ»¾ä´úÂësrand((unsigned) time(NULL));À´È¡´ú£¬ÕâÑù½«Ê¹µÃÖÖ×ÓÎªÒ»¸ö²»¹Ì¶¨µÄÊı£¬
+	//ÕâÑù²úÉúµÄËæ»úÊı¾Í²»»áÃ¿´ÎÖ´ĞĞ¶¼Ò»ÑùÁË¡£
 
-	printf("è¯·é€‰æ‹©>:\n");
+	printf("ÇëÑ¡Ôñ>:\n");
 	do{
 		menu();
 		scanf("%d", &input);
@@ -1200,7 +1023,7 @@ int main(){
 		case 0:
 			break;
 		default:
-			printf("é€‰æ‹©é”™è¯¯é‡æ–°é€‰æ‹©>\n");
+			printf("Ñ¡Ôñ´íÎóÖØĞÂÑ¡Ôñ>\n");
 			break;
 		}	
 	} while (input);
@@ -1210,7 +1033,7 @@ int main(){
 */
 	/*
 	int a, i = 0;
-	printf("è¯·è¾“å…¥æºä»£ç ï¼š\n");
+	printf("ÇëÊäÈëÔ´´úÂë£º\n");
 	while ((a = getchar()) != EOF)
 	{
 		if (a == '{')
@@ -1219,7 +1042,7 @@ int main(){
 		}
 		else if (a == '}' && i == 0)
 		{
-			printf("èŠ±æ‹¬å·ä¸æˆå¯¹å‡ºç°\n");
+			printf("»¨À¨ºÅ²»³É¶Ô³öÏÖ\n");
 		}
 		else if (a == '}' && i != 0)
 		{
@@ -1228,11 +1051,11 @@ int main(){
 	}
 	if (i > 0)
 	{
-		printf("èŠ±æ‹¬å·ä¸æˆå¯¹å‡ºç°\n");
+		printf("»¨À¨ºÅ²»³É¶Ô³öÏÖ\n");
 	}
 	else
 	{
-		printf("èŠ±æ‹¬å·æˆå¯¹å‡ºç°\n");
+		printf("»¨À¨ºÅ³É¶Ô³öÏÖ\n");
 	}
 	*/
 	/*
@@ -1243,7 +1066,7 @@ int main(){
 	scanf("%d", &a);
 	for (i = 0; i <= 4; i++)
 	{
-		sum = sum + a*pow(10, i);//å…¶ä¸­pow(x,y);//å…¶ä½œç”¨æ˜¯è®¡ç®—xçš„yæ¬¡æ–¹ï¼Œxã€yåŠå‡½æ•°å€¼éƒ½æ˜¯doubleå‹ ã€‚
+		sum = sum + a*pow(10, i);//ÆäÖĞpow(x,y);//Æä×÷ÓÃÊÇ¼ÆËãxµÄy´Î·½£¬x¡¢y¼°º¯ÊıÖµ¶¼ÊÇdoubleĞÍ ¡£
 		sn = sn + sum;
 	}
 	printf("%d", sn);
@@ -1324,9 +1147,9 @@ int main(){
 		printf("%d\n", mid);
 	}
 	else
-		printf("æ‰¾ä¸åˆ°");*/
+		printf("ÕÒ²»µ½");*/
 	/*
-	// è®¡ç®—nçš„é˜¶ä¹˜ç›¸åŠ 
+	// ¼ÆËãnµÄ½×³ËÏà¼Ó
 	int i = 1;
 	int sum = 1;
 	int c = 0;
@@ -1344,7 +1167,7 @@ int main(){
 	int i = 0;
 	int j = 0;
 	for (i = 0; i < 3; ++i){
-		printf("è¯·è¾“å…¥ï¼š>");
+		printf("ÇëÊäÈë£º>");
 		scanf("%s", psw);
 		if (strcmp(psw, "wang") == 0){
 
@@ -1374,7 +1197,7 @@ int main(){
 		right--;
 		printf("%s\n", arr2);
 	}*/
-	//forå¾ªç¯
+	//forÑ­»·
 	/*for (left = 0, right = strlen(arr1) - 1; left <= right; left++, right--)
 	{
 		Sleep(1000);
@@ -1399,7 +1222,7 @@ int main(){
 */
 	/*int x;
 	int y;
-	for (x=0,y=0;x<2,y<4;++x,y++){//é€—å·è¡¨è¾¾å¼æœ€ç»ˆç»“æœä¾æ®æœ€åä¸€ä¸ªé€—å·
+	for (x=0,y=0;x<2,y<4;++x,y++){//¶ººÅ±í´ïÊ½×îÖÕ½á¹ûÒÀ¾İ×îºóÒ»¸ö¶ººÅ
 
 		printf("heheh\n");
 	}
@@ -1437,7 +1260,7 @@ int main(){
 	while (i <= 10){
 		i = i + 1;
 		if (i == 5)
-			continue;//break; continue æ˜¯ç»ˆæ­¢æœ¬æ¬¡å¾ªç¯çš„ï¼Œåé¢ä»£ç ä¸æ‰§è¡Œï¼Œç›´æ¥è·³åˆ°whileåˆ¤æ–­éƒ¨åˆ†ï¼Œè¿›è¡Œä¸‹æ¬¡å¾ªç¯ã€‚breakæ˜¯æ°¸ä¹…ç»ˆæ­¢
+			continue;//break; continue ÊÇÖÕÖ¹±¾´ÎÑ­»·µÄ£¬ºóÃæ´úÂë²»Ö´ĞĞ£¬Ö±½ÓÌøµ½whileÅĞ¶Ï²¿·Ö£¬½øĞĞÏÂ´ÎÑ­»·¡£breakÊÇÓÀ¾ÃÖÕÖ¹
 		printf("%d", i);
 
 
@@ -1462,7 +1285,7 @@ int main(){
 	case 2:
 		n++;
 	case 3:
-		switch (n){//switchå…è®¸åµŒå¥—
+		switch (n){//switchÔÊĞíÇ¶Ì×
 		case 1:
 			n++;
 			break;
@@ -1499,11 +1322,11 @@ int main(){
 	case 4:
 		
 	case 5:
-		printf("æ˜Ÿå†…\n");
+		printf("ĞÇÄÚ\n");
 		break;
 	case 6:
 	case 7:
-		printf("æ˜Ÿæœ«\n");
+		printf("ĞÇÄ©\n");
 
 		break;
 	
@@ -1516,17 +1339,17 @@ int main(){
 		}
 	}*/
 	/*int coding = 0;
-	printf("ä½ ä¼šå»æ•²ä»£ç ï¼Ÿï¼ˆé€‰æ‹© 1 or 0ï¼‰ï¼Œå¦‚æœå®¶é‡Œæœ‰å¾ˆå¤šæˆ¿ï¼Ÿé€‰æ‹©ï¼š-1");
+	printf("Äã»áÈ¥ÇÃ´úÂë£¿£¨Ñ¡Ôñ 1 or 0£©£¬Èç¹û¼ÒÀïÓĞºÜ¶à·¿£¿Ñ¡Ôñ£º-1");
 	scanf("%d", &coding);
 	if (1==coding ){
-		printf("ä½ ä¼šèµ¢\n");
+		printf("Äã»áÓ®\n");
 	}
 	else if (coding == 0){
-		printf("æ”¾å¼ƒå›å®¶\n");
+		printf("·ÅÆú»Ø¼Ò\n");
 
 	}
 	else if (coding == -1){
-		printf("å‘µå‘µ\n");
+		printf("ºÇºÇ\n");
 	}*/
 	/*system("pause");
 	return 0;
@@ -1538,11 +1361,11 @@ int main(){
 /*int main(){
 
 	int coding = 0;
-	printf("ä½ ä¼šæ•²ä»£ç å—ï¼Ÿï¼ˆé€‰æ‹©ï¼‘ï½ï½’ï¼ï¼‰");
+	printf("Äã»áÇÃ´úÂëÂğ£¿£¨Ñ¡Ôñ£±£ï£ò£°£©");
 		scanf("%d", &coding);
 	if (coding = 1){
 
-		printf("ä½ ä¼šæœ‰å¥½ç»“æœ");
+		printf("Äã»áÓĞºÃ½á¹û");
 
 	}
 	else{
@@ -1558,7 +1381,7 @@ int main(){
 	int num = 10;
 	int *p;
 	p = &num;
-	*p = 2;//ç»“å¼•ç”¨å¯¹å˜é‡è¿›è¡Œèµ‹å€¼ 
+	*p = 2;//½áÒıÓÃ¶Ô±äÁ¿½øĞĞ¸³Öµ 
 	&num;
 
 	printf("%d", num);
@@ -1637,7 +1460,7 @@ int main (){
 
 	/*
 
-	static int i = 0;//staticä¿®é¥°å±€éƒ¨å˜é‡æ”¹å˜ç”Ÿå‘½å‘¨æœŸï¼Œä¸æ”¹å˜ä½œç”¨åŸŸï¼Œåˆ°ç¨‹åºç»“æŸç”Ÿå‘½å‘¨æœŸæ‰ç»“æŸï¼›
+	static int i = 0;//staticĞŞÊÎ¾Ö²¿±äÁ¿¸Ä±äÉúÃüÖÜÆÚ£¬²»¸Ä±ä×÷ÓÃÓò£¬µ½³ÌĞò½áÊøÉúÃüÖÜÆÚ²Å½áÊø£»
 	i++;
 	
 
@@ -1740,43 +1563,43 @@ int main()
 	int y ;
 	int d;
 	int sum = 0;
-	printf("è¾“å…¥ä¸‰ä¸ªæ“ä½œç¬¦ï¼š>");
+	printf("ÊäÈëÈı¸ö²Ù×÷·û£º>");
 	scanf("%d %d %d", &x,&y,&d);
 	sum = Add(x, y,d);
 	printf("sum=%d\n", sum);
 	*/
 /*{
-	printf("åŠ å…¥æ¯”ç‰¹\n");
+	printf("¼ÓÈë±ÈÌØ\n");
 	int line = 0;
 	while (line < 2000)
 	{
 		line++;
-		printf("æˆ‘è¦åŠªåŠ›å·§ä»£ç \n");
+		printf("ÎÒÒªÅ¬Á¦ÇÉ´úÂë\n");
 
 	}
 	if (line==2000){
-		printf("æˆ‘è¦ç™½å¯Œç¾\n");
+		printf("ÎÒÒª°×¸»ÃÀ\n");
 
 	}*/
 	/*int coding = 0;
-	printf("ä½ ä¼šå»æ•²ä»£ç å—ï¼Ÿ(é€‰æ‹©1 or 0 ):>");
+	printf("Äã»áÈ¥ÇÃ´úÂëÂğ£¿(Ñ¡Ôñ1 or 0 ):>");
 		scanf("%d", &coding);
 	if (coding == 1)
 	{
-		printf("åšæŒï¼Œä½ ä¼šæœ‰offer\n");
+		printf("¼á³Ö£¬Äã»áÓĞoffer\n");
 
 	}
 	else if (coding==2)
 	{
-		printf("æ”¾å¼ƒï¼Œå›å®¶å–çº¢è–¯\n");
+		printf("·ÅÆú£¬»Ø¼ÒÂôºìÊí\n");
 
 	}
 	else
 	{
 		printf("defualt");
 	}*/
-	/*printf("%d\n", Add(1, 2));//è°ƒç”¨åŠ æ³•
-	printf("%d\n", Sub(1, 2));//è°ƒç”¨å‡æ³•
+	/*printf("%d\n", Add(1, 2));//µ÷ÓÃ¼Ó·¨
+	printf("%d\n", Sub(1, 2));//µ÷ÓÃ¼õ·¨
 */
 
 	/*printf("%d\n",strlen("c:\test\32\test.c"));
@@ -1786,7 +1609,7 @@ int main()
 
 	/*3.14;
 	1000;
-	const float pai = 3.14f;//constå°†å˜é‡å®šä¹‰ä¸ºå¸¸é‡
+	const float pai = 3.14f;//const½«±äÁ¿¶¨ÒåÎª³£Á¿
 
 	//pai = 5.14;
 #define MAX 100;
@@ -1795,7 +1618,7 @@ int main()
 	int b = 0;
 	int sum = 0;
 
-	printf("è¾“å…¥ä¸¤ä¸ªæ“ä½œæ•°ï¼š>");
+	printf("ÊäÈëÁ½¸ö²Ù×÷Êı£º>");
 	scanf("%d %d", &a, &b);
 	sum = a + b;
 	printf("sum=%d", sum);*/
@@ -1809,7 +1632,7 @@ int main()
 	int local = 2018;
 	int global = 2020;
 	printf("global=%d\n", global);
-	//ä¼˜å…ˆä½¿ç”¨å±€éƒ¨å˜é‡
+	//ÓÅÏÈÊ¹ÓÃ¾Ö²¿±äÁ¿
 	*/
 
 
@@ -1850,9 +1673,9 @@ int main()
 		//for (j = 2; j <=3 i - 1; j++)
 		//{
 			//if (i%j == 0)
-		//		break;//å¦‚æœèƒ½æ•´é™¤å°±è·³å‡ºè¯¥æ¬¡å¾ªç¯ï¼Œé¿å…å¤šä½™è¿ç®—
+		//		break;//Èç¹ûÄÜÕû³ı¾ÍÌø³ö¸Ã´ÎÑ­»·£¬±ÜÃâ¶àÓàÔËËã
 		//}
-	//	if (j == i)//è¯¥æ¡ä»¶ä»£è¡¨æ²¡æœ‰æ•´é™¤ã€‚
+	//	if (j == i)//¸ÃÌõ¼ş´ú±íÃ»ÓĞÕû³ı¡£
 			//printf("%d ", i);
 	//}
 	
