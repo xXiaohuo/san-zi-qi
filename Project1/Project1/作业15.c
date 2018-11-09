@@ -49,16 +49,21 @@ system("pause");
 
 */
 /*
-
+/*
+喝汽水，1瓶汽水1元，2个空瓶可以换一瓶汽水，
+给20元，可以多少汽水。
+编程实现。
+*/
+/*
 #include <stdio.h>
 #include<string.h>
 #include<stdlib.h>
 int  come(int b){
 int c = 0;
 c =b;
-while (b>=1){//除到最后等于一瓶的时候不许要除了
+while (b>1){//除到最后等于一瓶的时候不许要除了
 c = c+(b / 2);
-b = b/ 2;
+b = b/ 2+b%2;
 }
 return c;
 }
