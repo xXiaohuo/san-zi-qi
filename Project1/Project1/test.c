@@ -1,7 +1,75 @@
-#include<stdio.h>
-#include <string.h>
-#include<errno.h>
-#pragma warning (disable:4996)
+
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#pragma warning(disable:4996)
+void back(char str1[], int num){
+	int size = strlen(str1);
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < num; i++){
+		char temp = str1[0];
+		for (j = 0; j < size - 1; j++){
+			str1[j] = str1[j + 1];
+		}
+		str1[size - 1] = temp;
+
+	}
+}
+int main(){
+	char str1[] = "ABCDEF";
+
+	back(str1, 3);
+	printf("%s", str1);
+	system("pause");
+	return 0;
+}
+//#include<stdio.h>
+//#include <string.h>//测试大小端 
+
+//先将所有数据异或，结果为ret
+//找ret中第一个比特位为一
+//分组异或得到结果
+
+
+/*
+#include <stdio.h>
+#include<string.h>
+#include<stdlib.h>
+void find(int *arr, int size){
+	int i = 0;
+	int j = 0;
+to:
+	for (j = j + 1; j < size; ++j){
+		for (i = 0; i < size; i++){
+			if (i == j){
+				continue;
+			}
+
+			if ((arr[j] ^ arr[i]) == 0){
+				goto to;
+			}
+		}
+		if (i = size - 1){
+			if (arr[size - 1] ^ arr[j] != 0){
+
+				printf("%d\n", arr[j]);
+			}
+		}
+	}
+
+}
+
+int main(){
+	int arr[] = { 1, 2, 4, 2, 3, 3, 1, 4, 5, 5, 6, 7, 8, 8, };
+	int size = (sizeof(arr) / sizeof(arr[0]));
+	find(arr, size);
+	system("pause");
+	return 0;
+}
+*/
+
+/*
 int main()
 {
 	char str1[20];
@@ -13,7 +81,7 @@ int main()
 	system("pause");
 	return 0;
 }
-
+*/
 /*
 
 int main(){
