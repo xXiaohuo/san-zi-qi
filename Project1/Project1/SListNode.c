@@ -8,7 +8,7 @@
 // 不带头节点的单链表 
 //初始化
 //创建新节点
-   SListNode* BuySLNode(SLDataType data){
+SListNode* BuySLNode(SLDataType data){
 	SListNode* pNewHead = (SListNode*)malloc(sizeof(SListNode));
 	if (pNewHead == NULL){
 		exit(1);
@@ -20,23 +20,23 @@
 	return pNewHead;
 }
 
-   void SListInit(SListNode** pHead){
-	 
-	   *pHead = NULL;
+void SListInit(SListNode** pHead){
 
-   }
+	*pHead = NULL;
+
+}
 //尾插
 void SListPushBack(SListNode** pHead, SLDataType data){
 	SListNode*pCur = *pHead;
 	SListNode*pNewNode = BuySLNode(data);
-	if (*pHead ==NULL){
+	if (*pHead == NULL){
 		*pHead = pNewNode;
 	}
 	else
 	{
 		while (pCur->_pNext){
 			pCur = pCur->_pNext;
-			
+
 		}
 		pCur->_pNext = pNewNode;
 
@@ -64,10 +64,10 @@ void SListPopBack(SListNode** pHead){
 
 //头插
 void SListPushFront(SListNode** pHead, SLDataType data){
-	     assert(pHead);
-         SListNode*pNewNode = BuySLNode(data);
-         pNewNode->_pNext = *pHead;
-        *pHead = pNewNode;
+	assert(pHead);
+	SListNode*pNewNode = BuySLNode(data);
+	pNewNode->_pNext = *pHead;
+	*pHead = pNewNode;
 
 }
 //头删
@@ -104,7 +104,7 @@ void SListInsert(SListNode* pos, SLDataType data){
 		return;
 	}
 	else{
-		
+
 		pnewdata = BuySLNode(data);
 		pnewdata->_pNext = pCur->_pNext;
 		pCur->_pNext = pnewdata;
@@ -144,7 +144,7 @@ void SListErase(SListNode** pHead, SListNode* pos){
 void SListDestroy(SListNode** pHead){
 	SListNode*pCur = *pHead;
 	while (*pHead){
-		pCur =*pHead;
+		pCur = *pHead;
 		*pHead = pCur->_pNext;
 		free(pCur);
 	}
@@ -160,9 +160,24 @@ int SListSize(SListNode* pHead){
 	}
 	return count;
 }
+//清空所有结点
+/*int SListEmpty(SListNode* pHead){
 
-int SListEmpty(SListNode* pHead);
-
+	SListNode*pCur = pHead->_pNext;
+	SListNode*fast = NULL;
+	SListNode*slow = pHead;
+	while (pCur){
+		fast = pCur;
+		pCur = pHead->_pNext;
+		while (pCur->_pNext	!=NULL){
+			pCur = pCur->_pNext;
+		}
+		pCur = pCur->_pNext;
+		free(pCur) ;
+		pCur = fast->_pNext;
+	}
+	return pHead;
+}*/
 
 //返回第一个节点中的数
 SLDataType Front(SListNode* pHead)
@@ -202,8 +217,8 @@ void SListRemove(SListNode** pHead, SLDataType data){
 			pCur = pCur->_pNext;
 		}
 	}
-	}
-//删除所有data ，无法删头?
+}
+//删除所有data 
 void SListRemoveAll(SListNode** pHead, SLDataType data){
 	SListNode *pCur = *pHead;
 	SListNode *pslow = *pHead;
@@ -212,43 +227,46 @@ void SListRemoveAll(SListNode** pHead, SLDataType data){
 		free(pCur);
 		pCur = *pHead;
 	}
-		while (pCur){
-			if (pCur->_data == data){
-				pslow->_pNext = pCur->_pNext;
-				free(pCur);
-				pCur = pslow->_pNext;
-				continue;
-			}
-			pslow = pCur;
-			pCur = pCur->_pNext;
+	while (pCur){
+		if (pCur->_data == data){
+			pslow->_pNext = pCur->_pNext;
+			free(pCur);
+			pCur = pslow->_pNext;
+			continue;
 		}
+		pslow = pCur;
+		pCur = pCur->_pNext;
+	}
 
 }
 
 //冒泡排序
 void SlistBubbleSort(SListNode* pHead){
 	SListNode*pCur = pHead;
-	SListNode*pnew = pCur->_pNext;
-	int count = 0;
-	while (pCur){
-		pCur = pCur->_pNext;
-		count++;
-	}
-	for (int i = 0; i < count - 1; i++){
-
-		for (int k = 0; k < k - i; k++){
-			if ((pCur->_data)>(pnew->_data)){
+	SListNode*pnew = pHead->_pNext;
+	SListNode*pslow =pHead;
+	SListNode*pfast = NULL;
+	while (pslow)
+	{
+		pCur = pHead;
+		pfast = pslow;
+		pnew = pHead->_pNext;
+		while (pCur->_pNext)
+		{
+			if ((pCur->_data) > (pnew->_data))
+			{
 				SLDataType data = pnew->_data;
 				pnew->_data = pCur->_data;
 				pCur->_data = data;
-				pCur = pCur->_pNext;
 			}
+			pCur = pCur->_pNext;
+			pnew = pnew->_pNext;
 		}
-
+		pslow = pfast->_pNext;
+		
 	}
+	
 }
-
-
 
 
 void  PrintSList(SListNode* pHead){
@@ -260,7 +278,7 @@ void  PrintSList(SListNode* pHead){
 	printf("NULL\n");
 }
 void TestList(){
-	SListNode *pList=NULL;
+	SListNode *pList = NULL;
 	SListInit(&pList);//plist ==null;
 	SListPushBack(&pList, 1);
 	SListPushBack(&pList, 6);
@@ -271,22 +289,21 @@ void TestList(){
 	SListPushBack(&pList, 2);
 	SListPushBack(&pList, 1);
 	PrintSList(pList);
-	
-	//SlistBubbleSort(pList);
-	//printf("%d\n", SListSize(pList));
+	printf("%d",SListEmpty(pList));
+	//SlistBubbleSort(pList);	//printf("%d\n", SListSize(pList));
 	//int c = SListFind(pList, 2);
-		//printf("%p\n", c);
+	//printf("%p\n", c);
 	//printf("%d\n",   Front(pList));
 
 	//printf("%d\n", Back(pList));
 	//SListErase(&pList, SListFind(pList, 1));
-	SListRemoveAll(&pList, 2);
-		//SListInsert(SListFind(pList, 2), 6);
-		PrintSList(pList);
+	//SListRemoveAll(&pList, 1);
+	//SListInsert(SListFind(pList, 2), 6);
+	PrintSList(pList);
 	//SListPopFront(&pList);
 	//PrintSList(pList);
 	//SListPopBack( &pList);
 	//SListPushFront(&pList, 0);
 	//SListPushFront(&pList, 3);
-	
+
 }
